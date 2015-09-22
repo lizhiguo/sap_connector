@@ -1,0 +1,14 @@
+#RENAME THIS FILE
+
+#SPRING JACKSON
+spring.jackson.serialization.indent_output=true
+
+#MAJUL
+jco.client.lang=
+jco.client.client=
+jco.client.passwd=
+jco.client.user=
+jco.client.sysnr=
+jco.client.ashost=
+jco.destination.peak_limit=
+jco.destination.pool_capacity=
