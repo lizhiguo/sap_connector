@@ -20,6 +20,7 @@ import com.majul.bapi.AGS_API_READ_PROJ_CONT_OBJ_TYP.AgsApiReadProjContObjTyp;
 @Service
 public class SapSessionManager {
 
+	private static AtomicReference<Session> SESSION = new AtomicReference<Session>();
 	private static AtomicReference<SessionManager> SESSION_MANAGER = new AtomicReference<SessionManager>();
 
 	@Autowired
@@ -30,6 +31,8 @@ public class SapSessionManager {
 
 			final SessionManagerConfig sessionConf = new SessionManagerConfig("majul");
 
+			sessionConf.setValidationMode(ValidationMode.AUTO);
+
 			sessionConf.setProperty("jco.client.lang", sapConfiguration.getLang());
 			sessionConf.setProperty("jco.client.user", sapConfiguration.getUser());
 			sessionConf.setProperty("jco.client.sysnr", sapConfiguration.getSysnr());
@@ -38,8 +41,6 @@ public class SapSessionManager {
 			sessionConf.setProperty("jco.client.ashost", sapConfiguration.getAshost());
 			sessionConf.setProperty("jco.destination.peak_limit", sapConfiguration.getPeakLimit());
 			sessionConf.setProperty("jco.destination.pool_capacity", sapConfiguration.getPoolCapacity());
-
-			sessionConf.setValidationMode(ValidationMode.AUTO);
 
 			final AnnotationConfiguration annotationConfiguration = new AnnotationConfiguration(sessionConf);
 
@@ -56,14 +57,18 @@ public class SapSessionManager {
 
 	}
 
-	public static SessionManager getInstance() {
+	public SessionManager getInstance() {
 
 		return SESSION_MANAGER.get();
 	}
 
-	public static Session openSession() {
+	public Session getSession() {
 
-		return SESSION_MANAGER.get().openSession();
+		if (SESSION.get() == null) {
+			SESSION.set(SESSION_MANAGER.get().openSession());
+		}
+
+		return SESSION.get();
 	}
 
 }

@@ -9,6 +9,7 @@ import org.hibersap.HibersapException;
 import org.hibersap.generation.bapi.BapiClassFormatter;
 import org.hibersap.generation.bapi.ReverseBapiMapper;
 import org.hibersap.mapping.model.BapiMapping;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,9 @@ import com.majul.sap.SapSessionManager;
 
 @RestController
 public class Generator {
+
+	@Autowired
+	private SapSessionManager sessionManager;
 
 	@RequestMapping(value = "/generate", method = RequestMethod.GET)
 	public void generate(
@@ -30,7 +34,7 @@ public class Generator {
 		final File outputDirFile = new File(dir);
 		outputDirFile.mkdirs();
 
-		final BapiMapping bapiMapping = new ReverseBapiMapper().map(bapiName, SapSessionManager.getInstance());
+		final BapiMapping bapiMapping = new ReverseBapiMapper().map(bapiName, this.sessionManager.getInstance());
 		final Map<String, String> classForName = new BapiClassFormatter()
 				.createClasses(bapiMapping, "com.majul.bapi." + bapiName);
 

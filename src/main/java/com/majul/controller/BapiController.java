@@ -3,6 +3,7 @@ package com.majul.controller;
 import java.util.List;
 
 import org.hibersap.session.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,9 @@ import com.majul.sap.SapSessionManager;
 @RequestMapping("/bapi")
 public class BapiController {
 
+	@Autowired
+	private SapSessionManager sessionManager;
+
 	@RequestMapping(value = "/AGS_API_CHANGE_PROJECT_CONTENT", method = RequestMethod.GET)
 	public @ResponseBody AgsApiChangeProjectContent AGS_API_CHANGE_PROJECT_CONTENT(
 			@RequestParam(required = false) final String iProjectId,
@@ -33,20 +37,15 @@ public class BapiController {
 			@RequestParam(required = false) final List<ItTabContentAttributes> itTabContentAttributes,
 			@RequestParam(required = false) final String iLockId) {
 
-		final Session session = SapSessionManager.openSession();
+		final Session session = this.sessionManager.getSession();
 
-		AgsApiChangeProjectContent agsApiChangeProjectContent;
+		AgsApiChangeProjectContent agsApiChangeProjectContent = new AgsApiChangeProjectContent(
+				iProjectId,
+				itNodeIds,
+				itTabContentAttributes,
+				iLockId);
 
-		try {
-
-			agsApiChangeProjectContent = new AgsApiChangeProjectContent(iProjectId, itNodeIds, itTabContentAttributes,
-					iLockId);
-
-			session.execute(agsApiChangeProjectContent);
-
-		} finally {
-			session.close();
-		}
+		session.execute(agsApiChangeProjectContent);
 
 		return agsApiChangeProjectContent;
 	}
@@ -59,20 +58,16 @@ public class BapiController {
 			@RequestParam(required = false) final List<ItNodeAttributes> itNodeAttributes,
 			@RequestParam(required = false) final String iLockId) {
 
-		final Session session = SapSessionManager.openSession();
+		final Session session = this.sessionManager.getSession();
 
-		AgsApiChangeProjectStruct agsApiChangeProjectStruct;
+		AgsApiChangeProjectStruct agsApiChangeProjectStruct = new AgsApiChangeProjectStruct(
+				iNodeId,
+				iProjectId,
+				itSubNodes,
+				itNodeAttributes,
+				iLockId);
 
-		try {
-
-			agsApiChangeProjectStruct = new AgsApiChangeProjectStruct(iNodeId, iProjectId, itSubNodes, itNodeAttributes,
-					iLockId);
-
-			session.execute(agsApiChangeProjectStruct);
-
-		} finally {
-			session.close();
-		}
+		session.execute(agsApiChangeProjectStruct);
 
 		return agsApiChangeProjectStruct;
 	}
@@ -83,19 +78,11 @@ public class BapiController {
 			@RequestParam(required = false) final String iInternal,
 			@RequestParam(required = false) final List<ItTabTypes> itTabTypes) {
 
-		final Session session = SapSessionManager.openSession();
+		final Session session = this.sessionManager.getSession();
 
-		AgsApiReadProjContObjTyp agsApiReadProjContObjTyp;
+		AgsApiReadProjContObjTyp agsApiReadProjContObjTyp = new AgsApiReadProjContObjTyp(iLangu, iInternal, itTabTypes);
 
-		try {
-
-			agsApiReadProjContObjTyp = new AgsApiReadProjContObjTyp(iLangu, iInternal, itTabTypes);
-
-			session.execute(agsApiReadProjContObjTyp);
-
-		} finally {
-			session.close();
-		}
+		session.execute(agsApiReadProjContObjTyp);
 
 		return agsApiReadProjContObjTyp;
 	}
@@ -107,19 +94,15 @@ public class BapiController {
 			@RequestParam(required = false) final String iInternal,
 			@RequestParam(required = false) final List<ItTabTypes> itTabTypes) {
 
-		final Session session = SapSessionManager.openSession();
+		final Session session = this.sessionManager.getSession();
 
-		AgsApiReadProjContentObj agsApiReadProjContentObj;
+		AgsApiReadProjContentObj agsApiReadProjContentObj = new AgsApiReadProjContentObj(
+				iProjectId,
+				itNodeIds,
+				iInternal,
+				itTabTypes);
 
-		try {
-
-			agsApiReadProjContentObj = new AgsApiReadProjContentObj(iProjectId, itNodeIds, iInternal, itTabTypes);
-
-			session.execute(agsApiReadProjContentObj);
-
-		} finally {
-			session.close();
-		}
+		session.execute(agsApiReadProjContentObj);
 
 		return agsApiReadProjContentObj;
 	}
@@ -130,19 +113,14 @@ public class BapiController {
 			@RequestParam(required = false) final String iProjectId,
 			@RequestParam(required = false) final String iInternal) {
 
-		final Session session = SapSessionManager.openSession();
+		final Session session = this.sessionManager.getSession();
 
-		AgsApiReadProjContentType agsApiReadProjContentType;
+		AgsApiReadProjContentType agsApiReadProjContentType = new AgsApiReadProjContentType(
+				iLangu,
+				iProjectId,
+				iInternal);
 
-		try {
-
-			agsApiReadProjContentType = new AgsApiReadProjContentType(iLangu, iProjectId, iInternal);
-
-			session.execute(agsApiReadProjContentType);
-
-		} finally {
-			session.close();
-		}
+		session.execute(agsApiReadProjContentType);
 
 		return agsApiReadProjContentType;
 	}
@@ -155,20 +133,16 @@ public class BapiController {
 			@RequestParam(required = false) final String iProjectId,
 			@RequestParam(required = false) final List<ItNodeIds> itNodeIds) {
 
-		final Session session = SapSessionManager.openSession();
+		final Session session = this.sessionManager.getSession();
 
-		AgsApiReadProjectstructure agsApiReadProjectstructure;
+		AgsApiReadProjectstructure agsApiReadProjectstructure = new AgsApiReadProjectstructure(
+				iLevels,
+				iGetGraphicData,
+				iGetAdditionalAttributes,
+				iProjectId,
+				itNodeIds);
 
-		try {
-
-			agsApiReadProjectstructure = new AgsApiReadProjectstructure(iLevels, iGetGraphicData,
-					iGetAdditionalAttributes, iProjectId, itNodeIds);
-
-			session.execute(agsApiReadProjectstructure);
-
-		} finally {
-			session.close();
-		}
+		session.execute(agsApiReadProjectstructure);
 
 		return agsApiReadProjectstructure;
 	}
