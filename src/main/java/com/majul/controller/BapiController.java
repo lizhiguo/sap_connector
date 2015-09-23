@@ -60,7 +60,7 @@ public class BapiController {
 
 		final Session session = this.sessionManager.getSession();
 
-		AgsApiChangeProjectStruct agsApiChangeProjectStruct = new AgsApiChangeProjectStruct(
+		final AgsApiChangeProjectStruct agsApiChangeProjectStruct = new AgsApiChangeProjectStruct(
 				iNodeId,
 				iProjectId,
 				itSubNodes,
@@ -80,7 +80,7 @@ public class BapiController {
 
 		final Session session = this.sessionManager.getSession();
 
-		AgsApiReadProjContObjTyp agsApiReadProjContObjTyp = new AgsApiReadProjContObjTyp(iLangu, iInternal, itTabTypes);
+		final AgsApiReadProjContObjTyp agsApiReadProjContObjTyp = new AgsApiReadProjContObjTyp(iLangu, iInternal, itTabTypes);
 
 		session.execute(agsApiReadProjContObjTyp);
 
@@ -96,7 +96,7 @@ public class BapiController {
 
 		final Session session = this.sessionManager.getSession();
 
-		AgsApiReadProjContentObj agsApiReadProjContentObj = new AgsApiReadProjContentObj(
+		final AgsApiReadProjContentObj agsApiReadProjContentObj = new AgsApiReadProjContentObj(
 				iProjectId,
 				itNodeIds,
 				iInternal,
@@ -115,7 +115,7 @@ public class BapiController {
 
 		final Session session = this.sessionManager.getSession();
 
-		AgsApiReadProjContentType agsApiReadProjContentType = new AgsApiReadProjContentType(
+		final AgsApiReadProjContentType agsApiReadProjContentType = new AgsApiReadProjContentType(
 				iLangu,
 				iProjectId,
 				iInternal);
@@ -135,7 +135,7 @@ public class BapiController {
 
 		final Session session = this.sessionManager.getSession();
 
-		AgsApiReadProjectstructure agsApiReadProjectstructure = new AgsApiReadProjectstructure(
+		final AgsApiReadProjectstructure agsApiReadProjectstructure = new AgsApiReadProjectstructure(
 				iLevels,
 				iGetGraphicData,
 				iGetAdditionalAttributes,
