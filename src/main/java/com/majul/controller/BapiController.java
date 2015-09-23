@@ -39,7 +39,7 @@ public class BapiController {
 
 		final Session session = this.sessionManager.getSession();
 
-		AgsApiChangeProjectContent agsApiChangeProjectContent = new AgsApiChangeProjectContent(
+		final AgsApiChangeProjectContent agsApiChangeProjectContent = new AgsApiChangeProjectContent(
 				iProjectId,
 				itNodeIds,
 				itTabContentAttributes,
