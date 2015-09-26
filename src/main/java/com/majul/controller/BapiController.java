@@ -27,124 +27,133 @@ import com.majul.sap.SapSessionManager;
 @RequestMapping("/bapi")
 public class BapiController {
 
-	@Autowired
-	private SapSessionManager sessionManager;
+    @Autowired
+    private SapSessionManager sessionManager;
 
-	@RequestMapping(value = "/AGS_API_CHANGE_PROJECT_CONTENT", method = RequestMethod.GET)
-	public @ResponseBody AgsApiChangeProjectContent AGS_API_CHANGE_PROJECT_CONTENT(
-			@RequestParam(required = false) final String iProjectId,
-			@RequestParam(required = false) final List<ItNodeIds> itNodeIds,
-			@RequestParam(required = false) final List<ItTabContentAttributes> itTabContentAttributes,
-			@RequestParam(required = false) final String iLockId) {
+    @RequestMapping(value = "/AGS_API_CHANGE_PROJECT_CONTENT", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    AgsApiChangeProjectContent AGS_API_CHANGE_PROJECT_CONTENT(
+            @RequestParam(required = false) final String iProjectId,
+            @RequestParam(required = false) final List<ItNodeIds> itNodeIds,
+            @RequestParam(required = false) final List<ItTabContentAttributes> itTabContentAttributes,
+            @RequestParam(required = false) final String iLockId) {
 
-		final Session session = this.sessionManager.getSession();
+        final Session session = this.sessionManager.getSession();
 
-		final AgsApiChangeProjectContent agsApiChangeProjectContent = new AgsApiChangeProjectContent(
-				iProjectId,
-				itNodeIds,
-				itTabContentAttributes,
-				iLockId);
+        final AgsApiChangeProjectContent agsApiChangeProjectContent = new AgsApiChangeProjectContent(iProjectId,
+                                                                                                     itNodeIds,
+                                                                                                     itTabContentAttributes,
+                                                                                                     iLockId);
 
-		session.execute(agsApiChangeProjectContent);
+        session.execute(agsApiChangeProjectContent);
 
-		return agsApiChangeProjectContent;
-	}
+        return agsApiChangeProjectContent;
+    }
 
-	@RequestMapping(value = "/AGS_API_CHANGE_PROJECT_STRUCT", method = RequestMethod.GET)
-	public @ResponseBody AgsApiChangeProjectStruct AGS_API_CHANGE_PROJECT_STRUCT(
-			@RequestParam(required = false) final String iNodeId,
-			@RequestParam(required = false) final String iProjectId,
-			@RequestParam(required = false) final List<ItSubNodes> itSubNodes,
-			@RequestParam(required = false) final List<ItNodeAttributes> itNodeAttributes,
-			@RequestParam(required = false) final String iLockId) {
+    @RequestMapping(value = "/AGS_API_CHANGE_PROJECT_STRUCT", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    AgsApiChangeProjectStruct AGS_API_CHANGE_PROJECT_STRUCT(
+            @RequestParam(required = false) final String iNodeId,
+            @RequestParam(required = false) final String iProjectId,
+            @RequestParam(required = false) final List<ItSubNodes> itSubNodes,
+            @RequestParam(required = false) final List<ItNodeAttributes> itNodeAttributes,
+            @RequestParam(required = false) final String iLockId) {
 
-		final Session session = this.sessionManager.getSession();
+        final Session session = this.sessionManager.getSession();
 
-		final AgsApiChangeProjectStruct agsApiChangeProjectStruct = new AgsApiChangeProjectStruct(
-				iNodeId,
-				iProjectId,
-				itSubNodes,
-				itNodeAttributes,
-				iLockId);
+        final AgsApiChangeProjectStruct agsApiChangeProjectStruct = new AgsApiChangeProjectStruct(iNodeId,
+                                                                                                  iProjectId,
+                                                                                                  itSubNodes,
+                                                                                                  itNodeAttributes,
+                                                                                                  iLockId);
 
-		session.execute(agsApiChangeProjectStruct);
+        session.execute(agsApiChangeProjectStruct);
 
-		return agsApiChangeProjectStruct;
-	}
+        return agsApiChangeProjectStruct;
+    }
 
-	@RequestMapping(value = "/AGS_API_READ_PROJ_CONT_OBJ_TYP", method = RequestMethod.GET)
-	public @ResponseBody AgsApiReadProjContObjTyp AGS_API_READ_PROJ_CONT_OBJ_TYP(
-			@RequestParam(required = false) final String iLangu,
-			@RequestParam(required = false) final String iInternal,
-			@RequestParam(required = false) final List<ItTabTypes> itTabTypes) {
+    @RequestMapping(value = "/AGS_API_READ_PROJ_CONT_OBJ_TYP", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    AgsApiReadProjContObjTyp AGS_API_READ_PROJ_CONT_OBJ_TYP(
+            @RequestParam(required = false) final String iLangu,
+            @RequestParam(required = false) final String iInternal,
+            @RequestParam(required = false) final List<ItTabTypes> itTabTypes) {
 
-		final Session session = this.sessionManager.getSession();
+        final Session session = this.sessionManager.getSession();
 
-		final AgsApiReadProjContObjTyp agsApiReadProjContObjTyp = new AgsApiReadProjContObjTyp(iLangu, iInternal, itTabTypes);
+        final AgsApiReadProjContObjTyp agsApiReadProjContObjTyp = new AgsApiReadProjContObjTyp(iLangu,
+                                                                                               iInternal,
+                                                                                               itTabTypes);
 
-		session.execute(agsApiReadProjContObjTyp);
+        session.execute(agsApiReadProjContObjTyp);
 
-		return agsApiReadProjContObjTyp;
-	}
+        return agsApiReadProjContObjTyp;
+    }
 
-	@RequestMapping(value = "/AGS_API_READ_PROJ_CONTENT_OBJ", method = RequestMethod.GET)
-	public @ResponseBody AgsApiReadProjContentObj AGS_API_READ_PROJ_CONTENT_OBJ(
-			@RequestParam(required = false) final String iProjectId,
-			@RequestParam(required = false) final List<ItNodeIds> itNodeIds,
-			@RequestParam(required = false) final String iInternal,
-			@RequestParam(required = false) final List<ItTabTypes> itTabTypes) {
+    @RequestMapping(value = "/AGS_API_READ_PROJ_CONTENT_OBJ", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    AgsApiReadProjContentObj AGS_API_READ_PROJ_CONTENT_OBJ(
+            @RequestParam(required = false) final String iProjectId,
+            @RequestParam(required = false) final List<ItNodeIds> itNodeIds,
+            @RequestParam(required = false) final String iInternal,
+            @RequestParam(required = false) final List<ItTabTypes> itTabTypes) {
 
-		final Session session = this.sessionManager.getSession();
+        final Session session = this.sessionManager.getSession();
 
-		final AgsApiReadProjContentObj agsApiReadProjContentObj = new AgsApiReadProjContentObj(
-				iProjectId,
-				itNodeIds,
-				iInternal,
-				itTabTypes);
+        final AgsApiReadProjContentObj agsApiReadProjContentObj = new AgsApiReadProjContentObj(iProjectId,
+                                                                                               itNodeIds,
+                                                                                               iInternal,
+                                                                                               itTabTypes);
 
-		session.execute(agsApiReadProjContentObj);
+        session.execute(agsApiReadProjContentObj);
 
-		return agsApiReadProjContentObj;
-	}
+        return agsApiReadProjContentObj;
+    }
 
-	@RequestMapping(value = "/AGS_API_READ_PROJ_CONTENT_TYPE", method = RequestMethod.GET)
-	public @ResponseBody AgsApiReadProjContentType AGS_API_READ_PROJ_CONTENT_TYPE(
-			@RequestParam(required = false) final String iLangu,
-			@RequestParam(required = false) final String iProjectId,
-			@RequestParam(required = false) final String iInternal) {
+    @RequestMapping(value = "/AGS_API_READ_PROJ_CONTENT_TYPE", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    AgsApiReadProjContentType AGS_API_READ_PROJ_CONTENT_TYPE(
+            @RequestParam(required = false) final String iLangu,
+            @RequestParam(required = false) final String iProjectId,
+            @RequestParam(required = false) final String iInternal) {
 
-		final Session session = this.sessionManager.getSession();
+        final Session session = this.sessionManager.getSession();
 
-		final AgsApiReadProjContentType agsApiReadProjContentType = new AgsApiReadProjContentType(
-				iLangu,
-				iProjectId,
-				iInternal);
+        final AgsApiReadProjContentType agsApiReadProjContentType = new AgsApiReadProjContentType(iLangu,
+                                                                                                  iProjectId,
+                                                                                                  iInternal);
 
-		session.execute(agsApiReadProjContentType);
+        session.execute(agsApiReadProjContentType);
 
-		return agsApiReadProjContentType;
-	}
+        return agsApiReadProjContentType;
+    }
 
-	@RequestMapping(value = "/AGS_API_READ_PROJECTSTRUCTURE", method = RequestMethod.GET)
-	public @ResponseBody AgsApiReadProjectstructure AGS_API_READ_PROJECTSTRUCTURE(
-			@RequestParam(required = false) final Integer iLevels,
-			@RequestParam(required = false) final String iGetGraphicData,
-			@RequestParam(required = false) final String iGetAdditionalAttributes,
-			@RequestParam(required = false) final String iProjectId,
-			@RequestParam(required = false) final List<ItNodeIds> itNodeIds) {
+    @RequestMapping(value = "/AGS_API_READ_PROJECTSTRUCTURE", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    AgsApiReadProjectstructure AGS_API_READ_PROJECTSTRUCTURE(
+            @RequestParam(required = false) final Integer iLevels,
+            @RequestParam(required = false) final String iGetGraphicData,
+            @RequestParam(required = false) final String iGetAdditionalAttributes,
+            @RequestParam(required = false) final String iProjectId,
+            @RequestParam(required = false) final List<ItNodeIds> itNodeIds) {
 
-		final Session session = this.sessionManager.getSession();
+        final Session session = this.sessionManager.getSession();
 
-		final AgsApiReadProjectstructure agsApiReadProjectstructure = new AgsApiReadProjectstructure(
-				iLevels,
-				iGetGraphicData,
-				iGetAdditionalAttributes,
-				iProjectId,
-				itNodeIds);
+        final AgsApiReadProjectstructure agsApiReadProjectstructure = new AgsApiReadProjectstructure(iLevels,
+                                                                                                     iGetGraphicData,
+                                                                                                     iGetAdditionalAttributes,
+                                                                                                     iProjectId,
+                                                                                                     itNodeIds);
 
-		session.execute(agsApiReadProjectstructure);
+        session.execute(agsApiReadProjectstructure);
 
-		return agsApiReadProjectstructure;
-	}
+        return agsApiReadProjectstructure;
+    }
 
 }

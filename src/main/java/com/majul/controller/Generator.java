@@ -20,52 +20,52 @@ import com.majul.sap.SapSessionManager;
 @RestController
 public class Generator {
 
-	@Autowired
-	private SapSessionManager sessionManager;
+    @Autowired
+    private SapSessionManager sessionManager;
 
-	@RequestMapping(value = "/generate", method = RequestMethod.GET)
-	public void generate(
-			@RequestParam final String bapiName) {
+    @RequestMapping(value = "/generate", method = RequestMethod.GET)
+    public void generate(
+            @RequestParam final String bapiName) {
 
-		final String dir = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main"
-				+ File.separator + "java" + File.separator + "com" + File.separator + "majul" + File.separator + "bapi"
-				+ File.separator + bapiName;
+        final String dir = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main"
+                + File.separator + "java" + File.separator + "com" + File.separator + "majul" + File.separator + "bapi"
+                + File.separator + bapiName;
 
-		final File outputDirFile = new File(dir);
-		outputDirFile.mkdirs();
+        final File outputDirFile = new File(dir);
+        outputDirFile.mkdirs();
 
-		final BapiMapping bapiMapping = new ReverseBapiMapper().map(bapiName, this.sessionManager.getInstance());
-		final Map<String, String> classForName = new BapiClassFormatter()
-				.createClasses(bapiMapping, "com.majul.bapi." + bapiName);
+        final BapiMapping bapiMapping = new ReverseBapiMapper().map(bapiName, this.sessionManager.getInstance());
+        final Map<String, String> classForName = new BapiClassFormatter()
+                .createClasses(bapiMapping, "com.majul.bapi." + bapiName);
 
-		for (final String className : classForName.keySet()) {
+        for (final String className : classForName.keySet()) {
 
-			final String fileName = className + ".java";
-			final String content = classForName.get(className);
+            final String fileName = className + ".java";
+            final String content = classForName.get(className);
 
-			writeToDisk(outputDirFile, fileName, content);
+            writeToDisk(outputDirFile, fileName, content);
 
-		}
+        }
 
-	}
+    }
 
-	private void writeToDisk(
-			final File outputDir,
-			final String fileName,
-			final String content) {
+    private void writeToDisk(
+            final File outputDir,
+            final String fileName,
+            final String content) {
 
-		try {
+        try {
 
-			final File file = new File(outputDir, fileName);
+            final File file = new File(outputDir, fileName);
 
-			final FileWriter writer = new FileWriter(file);
-			writer.append(content);
-			writer.close();
+            final FileWriter writer = new FileWriter(file);
+            writer.append(content);
+            writer.close();
 
-		} catch (IOException e) {
-			throw new HibersapException("File " + fileName + " could not be written to file system.", e);
-		}
+        } catch (IOException e) {
+            throw new HibersapException("File " + fileName + " could not be written to file system.", e);
+        }
 
-	}
+    }
 
 }

@@ -20,55 +20,55 @@ import com.majul.bapi.AGS_API_READ_PROJ_CONT_OBJ_TYP.AgsApiReadProjContObjTyp;
 @Service
 public class SapSessionManager {
 
-	private static AtomicReference<Session> SESSION = new AtomicReference<Session>();
-	private static AtomicReference<SessionManager> SESSION_MANAGER = new AtomicReference<SessionManager>();
+    private static AtomicReference<Session> SESSION = new AtomicReference<>();
+    private static AtomicReference<SessionManager> SESSION_MANAGER = new AtomicReference<>();
 
-	@Autowired
-	public SapSessionManager(
-			final SapConfiguration sapConfiguration) {
+    @Autowired
+    public SapSessionManager(
+            final SapConfiguration sapConfiguration) {
 
-		if (SESSION_MANAGER.get() == null) {
+        if (SESSION_MANAGER.get() == null) {
 
-			final SessionManagerConfig sessionConf = new SessionManagerConfig("majul");
+            final SessionManagerConfig sessionConf = new SessionManagerConfig("majul");
 
-			sessionConf.setValidationMode(ValidationMode.AUTO);
+            sessionConf.setValidationMode(ValidationMode.AUTO);
 
-			sessionConf.setProperty("jco.client.lang", sapConfiguration.getLang());
-			sessionConf.setProperty("jco.client.user", sapConfiguration.getUser());
-			sessionConf.setProperty("jco.client.sysnr", sapConfiguration.getSysnr());
-			sessionConf.setProperty("jco.client.passwd", sapConfiguration.getPasswd());
-			sessionConf.setProperty("jco.client.client", sapConfiguration.getClient());
-			sessionConf.setProperty("jco.client.ashost", sapConfiguration.getAshost());
-			sessionConf.setProperty("jco.destination.peak_limit", sapConfiguration.getPeakLimit());
-			sessionConf.setProperty("jco.destination.pool_capacity", sapConfiguration.getPoolCapacity());
+            sessionConf.setProperty("jco.client.lang", sapConfiguration.getLang());
+            sessionConf.setProperty("jco.client.user", sapConfiguration.getUser());
+            sessionConf.setProperty("jco.client.sysnr", sapConfiguration.getSysnr());
+            sessionConf.setProperty("jco.client.passwd", sapConfiguration.getPasswd());
+            sessionConf.setProperty("jco.client.client", sapConfiguration.getClient());
+            sessionConf.setProperty("jco.client.ashost", sapConfiguration.getAshost());
+            sessionConf.setProperty("jco.destination.peak_limit", sapConfiguration.getPeakLimit());
+            sessionConf.setProperty("jco.destination.pool_capacity", sapConfiguration.getPoolCapacity());
 
-			final AnnotationConfiguration annotationConfiguration = new AnnotationConfiguration(sessionConf);
+            final AnnotationConfiguration annotationConfiguration = new AnnotationConfiguration(sessionConf);
 
-			annotationConfiguration.addBapiClasses(AgsApiChangeProjectContent.class);
-			annotationConfiguration.addBapiClasses(AgsApiChangeProjectStruct.class);
-			annotationConfiguration.addBapiClasses(AgsApiReadProjContObjTyp.class);
-			annotationConfiguration.addBapiClasses(AgsApiReadProjContentObj.class);
-			annotationConfiguration.addBapiClasses(AgsApiReadProjContentType.class);
-			annotationConfiguration.addBapiClasses(AgsApiReadProjectstructure.class);
+            annotationConfiguration.addBapiClasses(AgsApiChangeProjectContent.class);
+            annotationConfiguration.addBapiClasses(AgsApiChangeProjectStruct.class);
+            annotationConfiguration.addBapiClasses(AgsApiReadProjContObjTyp.class);
+            annotationConfiguration.addBapiClasses(AgsApiReadProjContentObj.class);
+            annotationConfiguration.addBapiClasses(AgsApiReadProjContentType.class);
+            annotationConfiguration.addBapiClasses(AgsApiReadProjectstructure.class);
 
-			SESSION_MANAGER.set(annotationConfiguration.buildSessionManager());
+            SESSION_MANAGER.set(annotationConfiguration.buildSessionManager());
 
-		}
+        }
 
-	}
+    }
 
-	public SessionManager getInstance() {
+    public SessionManager getInstance() {
 
-		return SESSION_MANAGER.get();
-	}
+        return SESSION_MANAGER.get();
+    }
 
-	public Session getSession() {
+    public Session getSession() {
 
-		if (SESSION.get() == null) {
-			SESSION.set(SESSION_MANAGER.get().openSession());
-		}
+        if (SESSION.get() == null) {
+            SESSION.set(SESSION_MANAGER.get().openSession());
+        }
 
-		return SESSION.get();
-	}
+        return SESSION.get();
+    }
 
 }

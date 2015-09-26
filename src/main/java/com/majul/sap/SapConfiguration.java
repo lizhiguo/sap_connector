@@ -6,111 +6,112 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SapConfiguration {
 
-	@Value("${jco.client.lang}")
-	private String lang;
-	@Value("${jco.client.client}")
-	private String client;
-	@Value("${jco.client.passwd}")
-	private String passwd;
-	@Value("${jco.client.user}")
-	private String user;
-	@Value("${jco.client.sysnr}")
-	private String sysnr;
-	@Value("${jco.client.ashost}")
-	private String ashost;
-	@Value("${jco.destination.peak_limit}")
-	private String peakLimit;
-	@Value("${jco.destination.pool_capacity}")
-	private String poolCapacity;
+    @Value("${jco.client.lang}")
+    private String lang;
+    @Value("${jco.client.client}")
+    private String client;
+    @Value("${jco.client.passwd}")
+    private String passwd;
+    @Value("${jco.client.user}")
+    private String user;
+    @Value("${jco.client.sysnr}")
+    private String sysnr;
+    @Value("${jco.client.ashost}")
+    private String ashost;
+    @Value("${jco.destination.peak_limit}")
+    private String peakLimit;
+    @Value("${jco.destination.pool_capacity}")
+    private String poolCapacity;
 
-	public SapConfiguration() {}
+    public SapConfiguration() {
+    }
 
-	public String getLang() {
+    public String getLang() {
 
-		return lang;
-	}
+        return lang;
+    }
 
-	public void setLang(
-			String lang) {
+    public void setLang(
+            String lang) {
 
-		this.lang = lang;
-	}
+        this.lang = lang;
+    }
 
-	public String getClient() {
+    public String getClient() {
 
-		return client;
-	}
+        return client;
+    }
 
-	public void setClient(
-			String client) {
+    public void setClient(
+            String client) {
 
-		this.client = client;
-	}
+        this.client = client;
+    }
 
-	public String getPasswd() {
+    public String getPasswd() {
 
-		return passwd;
-	}
+        return passwd;
+    }
 
-	public void setPasswd(
-			String passwd) {
+    public void setPasswd(
+            String passwd) {
 
-		this.passwd = passwd;
-	}
+        this.passwd = passwd;
+    }
 
-	public String getUser() {
+    public String getUser() {
 
-		return user;
-	}
+        return user;
+    }
 
-	public void setUser(
-			String user) {
+    public void setUser(
+            String user) {
 
-		this.user = user;
-	}
+        this.user = user;
+    }
 
-	public String getSysnr() {
+    public String getSysnr() {
 
-		return sysnr;
-	}
+        return sysnr;
+    }
 
-	public void setSysnr(
-			String sysnr) {
+    public void setSysnr(
+            String sysnr) {
 
-		this.sysnr = sysnr;
-	}
+        this.sysnr = sysnr;
+    }
 
-	public String getAshost() {
+    public String getAshost() {
 
-		return ashost;
-	}
+        return ashost;
+    }
 
-	public void setAshost(
-			String ashost) {
+    public void setAshost(
+            String ashost) {
 
-		this.ashost = ashost;
-	}
+        this.ashost = ashost;
+    }
 
-	public String getPeakLimit() {
+    public String getPeakLimit() {
 
-		return peakLimit;
-	}
+        return peakLimit;
+    }
 
-	public void setPeakLimit(
-			String peakLimit) {
+    public void setPeakLimit(
+            String peakLimit) {
 
-		this.peakLimit = peakLimit;
-	}
+        this.peakLimit = peakLimit;
+    }
 
-	public String getPoolCapacity() {
+    public String getPoolCapacity() {
 
-		return poolCapacity;
-	}
+        return poolCapacity;
+    }
 
-	public void setPoolCapacity(
-			String poolCapacity) {
+    public void setPoolCapacity(
+            String poolCapacity) {
 
-		this.poolCapacity = poolCapacity;
-	}
+        this.poolCapacity = poolCapacity;
+    }
 
 }
