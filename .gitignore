@@ -4,3 +4,5 @@ target
 .project
 .DS_Store
 application.properties
+majul.iml
+.idea
